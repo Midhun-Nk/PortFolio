@@ -7,7 +7,7 @@ import certificate5 from "./assets/certificate/certificate-5.png";
 import certificate6 from "./assets/certificate/certificate-6.png";
 import certificate7 from "./assets/certificate/certificate-7.png";
 import certificate8 from "./assets/certificate/certificate-8.png";
-import realtimecode from "./assets/images/realtimecode.png";
+import realtimecode from "./assets/images/realtimecode.jpg";
 import quickChat from "./assets/images/quickChat.png";
 import logo from "./assets/images/logo2.png";
 import ATSResume from "./assets/images/ATSResume.jpg";
