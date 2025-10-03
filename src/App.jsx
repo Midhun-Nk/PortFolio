@@ -1,20 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import certificate1 from "./assets/certificate/certificate-1.png";
-import certificate2 from "./assets/certificate/certificate-2.png";
-import certificate3 from "./assets/certificate/certificate-3.png";
-import certificate4 from "./assets/certificate/certificate-4.png";
-import certificate5 from "./assets/certificate/certificate-5.png";
-import certificate6 from "./assets/certificate/certificate-6.png";
-import certificate7 from "./assets/certificate/certificate-7.png";
-import certificate8 from "./assets/certificate/certificate-8.png";
-import realtimecode from "./assets/images/realtimecode.jpg";
-import quickchat from "./assets/images/quickchat.png";
-import logo from "./assets/images/logo2.png";
-import atsresume from "./assets/images/atsresume.jpg";
-import bookmydoc from "./assets/images/bookmydoc.jpg";
-import disaster from "./assets/images/disaster.jpg";
-import nursery from "./assets/images/nursery.jpg";
-import blooddonation from "./assets/images/blooddonation.jpg";
+
 // --- SVG Icons ---
 const MailIcon = (props) => (
   <svg
@@ -582,7 +567,7 @@ const AboutSection = () => {
             <div className="relative group w-56 h-56 md:w-72 md:h-72">
               <div className="absolute -inset-1.5 rounded-full blur opacity-50 group-hover:opacity-75 animate-rgb-border transition duration-1000 group-hover:duration-200"></div>
               <img
-                src={logo}
+                src="/images/logo2.png"
                 alt="Midhun Nk"
                 className="relative rounded-full shadow-xl w-full h-full object-cover"
               />
@@ -1156,7 +1141,7 @@ export default function App() {
       title: "RealTime Collab Editor",
       description:
         "A collaborative code editor for real-time pair programming, built with modern web technologies.",
-      image: realtimecode,
+      image: "/images/realtimecode.jpg",
       tags: [
         "React",
         "Node.js",
@@ -1171,7 +1156,7 @@ export default function App() {
       title: "Book My Doctor",
       description:
         "A web application for booking doctor appointments, managing schedules, and patient records.",
-      image: bookmydoc,
+      image: "/images/bookmydoc.jpg",
       tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
       link: "https://github.com/Midhun-Nk/BookMyDoctor.git",
     },
@@ -1179,7 +1164,7 @@ export default function App() {
       title: "Quick Chat",
       description:
         "A mobile app for real-time chat and messaging, featuring user authentication and chat rooms.",
-      image: quickchat,
+      image: "/images/quickchat.png",
       tags: [
         "React",
         "Node.js",
@@ -1194,7 +1179,7 @@ export default function App() {
       title: "ATS Resume Builder",
       description:
         "An AI-powered tool to create and optimize resumes for Applicant Tracking Systems (ATS).",
-      image: atsresume,
+      image: "/images/atsresume.jpg",
       tags: [
         "React",
         "Python",
@@ -1211,7 +1196,7 @@ export default function App() {
       title: "Disaster Management",
       description:
         "A comprehensive application for coordinating relief and rescue operations during natural disasters.",
-      image: disaster,
+      image: "/images/disaster.jpg",
       tags: [
         "Flutter",
         "Firebase",
@@ -1226,7 +1211,7 @@ export default function App() {
       title: "E-Commerce Nursery App",
       description:
         "An online store for plants and gardening supplies, featuring product catalogs and a checkout system.",
-      image: nursery,
+      image: "/images/nursery.jpg",
       tags: ["Flutter", "Firebase", "E-commerce"],
       link: "https://github.com/Midhun-Nk/Ecommerce-Application.git",
     },
@@ -1234,7 +1219,7 @@ export default function App() {
       title: "Blood Donation App",
       description:
         "A mobile app connecting blood donors with recipients in need, facilitating emergency requests.",
-      image: blooddonation,
+      image: "/images/blooddonation.jpg",
       tags: ["Flutter", "Firebase"],
       link: "https://github.com/Midhun-Nk/BloodDonation.git",
     },
@@ -1243,49 +1228,49 @@ export default function App() {
     {
       title: "Python & Django Web Dev",
       issuer: "Udemy",
-      image: certificate1,
+      image: "/certificate/certificate-1.png",
       link: "https://drive.google.com/file/d/1HRaWCD82YuOzWeiQ0Nzbp_5jFFqcKiTl/view",
     },
     {
       title: "Data Structures Using Python",
       issuer: "Udemy",
-      image: certificate2,
+      image: "/certificate/certificate-2.png",
       link: "https://drive.google.com/file/d/1GZBaAqVS44WCNHwBnZ8_zmXKFBQnpdTU/view",
     },
     {
       title: "IEEE Hackathon",
       issuer: "IEEE SPS Kerala Chapter",
-      image: certificate3,
+      image: "/certificate/certificate-3.png",
       link: "https://drive.google.com/file/d/150Bb8HjWjGq8YZJB1IHcFRb31sFkua88/view",
     },
     {
       title: "Responsive Web Design",
       issuer: "freeCodeCamp",
-      image: certificate4,
+      image: "/certificate/certificate-4.png",
       link: "https://drive.google.com/file/d/14yNmvKpcKwEE4aABJ17RshNlNrk3ylqG/view",
     },
     {
       title: "Internship on Python Developer",
       issuer: "Revertech IT Solutions",
-      image: certificate5,
+      image: "/certificate/certificate-5.png",
       link: "https://drive.google.com/file/d/14xIHmHrX6pvqJhcLe5tQgTUJXNM1Wu5t/view",
     },
     {
       title: "MERN Stack Trainee",
       issuer: "Edunet & EY",
-      image: certificate6,
+      image: "/certificate/certificate-6.png",
       link: "https://drive.google.com/file/d/159Ac700r7CKR9Vua6K1bVEOHdMg6SW-b/view",
     },
     {
       title: "Introduction to MySQL",
       issuer: "Skill Up",
-      image: certificate7,
+      image: "/certificate/certificate-7.png",
       link: "https://drive.google.com/file/d/1tIMuBMe7Yb27sNWzQCzP0M12jPFYyKSS/view",
     },
     {
       title: "Python Django Rest Framework",
       issuer: "Udemy",
-      image: certificate8,
+      image: "/certificate/certificate-8.png",
       link: "https://drive.google.com/file/d/1Kafj7NnDVAoASBovp6Eg0J9Oj1g-A4PK/view?usp=drive_link",
     },
   ];
