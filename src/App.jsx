@@ -8,13 +8,13 @@ import certificate6 from "./assets/certificate/certificate-6.png";
 import certificate7 from "./assets/certificate/certificate-7.png";
 import certificate8 from "./assets/certificate/certificate-8.png";
 import realtimecode from "./assets/images/realtimecode.jpg";
-import quickChat from "./assets/images/quickchat.png";
+import quickchat from "./assets/images/quickchat.png";
 import logo from "./assets/images/logo2.png";
-import atsResume from "./assets/images/atsresume.jpg";
-import BookMyDoc from "./assets/images/bookmydoc.jpg";
-import DisasterManagement from "./assets/images/disaster.jpg";
-import Nursery from "./assets/images/nursery.jpg";
-import BloodDonation from "./assets/images/blooddonation.jpg";
+import atsresume from "./assets/images/atsresume.jpg";
+import bookmydoc from "./assets/images/bookmydoc.jpg";
+import disaster from "./assets/images/disaster.jpg";
+import nursery from "./assets/images/nursery.jpg";
+import blooddonation from "./assets/images/blooddonation.jpg";
 // --- SVG Icons ---
 const MailIcon = (props) => (
   <svg
@@ -1171,7 +1171,7 @@ export default function App() {
       title: "Book My Doctor",
       description:
         "A web application for booking doctor appointments, managing schedules, and patient records.",
-      image: BookMyDoc,
+      image: bookmydoc,
       tags: ["React", "Node.js", "Express", "MongoDB", "Tailwind CSS"],
       link: "https://github.com/Midhun-Nk/BookMyDoctor.git",
     },
@@ -1179,7 +1179,7 @@ export default function App() {
       title: "Quick Chat",
       description:
         "A mobile app for real-time chat and messaging, featuring user authentication and chat rooms.",
-      image: quickChat,
+      image: quickchat,
       tags: [
         "React",
         "Node.js",
@@ -1194,7 +1194,7 @@ export default function App() {
       title: "ATS Resume Builder",
       description:
         "An AI-powered tool to create and optimize resumes for Applicant Tracking Systems (ATS).",
-      image: atsResume,
+      image: atsresume,
       tags: [
         "React",
         "Python",
@@ -1211,7 +1211,7 @@ export default function App() {
       title: "Disaster Management",
       description:
         "A comprehensive application for coordinating relief and rescue operations during natural disasters.",
-      image: DisasterManagement,
+      image: disaster,
       tags: [
         "Flutter",
         "Firebase",
@@ -1226,7 +1226,7 @@ export default function App() {
       title: "E-Commerce Nursery App",
       description:
         "An online store for plants and gardening supplies, featuring product catalogs and a checkout system.",
-      image: Nursery,
+      image: nursery,
       tags: ["Flutter", "Firebase", "E-commerce"],
       link: "https://github.com/Midhun-Nk/Ecommerce-Application.git",
     },
@@ -1234,7 +1234,7 @@ export default function App() {
       title: "Blood Donation App",
       description:
         "A mobile app connecting blood donors with recipients in need, facilitating emergency requests.",
-      image: BloodDonation,
+      image: blooddonation,
       tags: ["Flutter", "Firebase"],
       link: "https://github.com/Midhun-Nk/BloodDonation.git",
     },
