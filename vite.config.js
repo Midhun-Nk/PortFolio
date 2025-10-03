@@ -7,8 +7,9 @@ export default defineConfig({
   plugins: [react()   , tailwindcss(),
     
 ],
- base: "./",   // 👈 important for Render/Netlify/Vercel
+ base: "./",          // 👈 ensures assets load correctly after deploy
   build: {
-    outDir: "dist"
-  }
+    outDir: "dist",    // 👈 default, but good to be explicit
+  },
+
 })
