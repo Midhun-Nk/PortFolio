@@ -8,13 +8,13 @@ import certificate6 from "./assets/certificate/certificate-6.png";
 import certificate7 from "./assets/certificate/certificate-7.png";
 import certificate8 from "./assets/certificate/certificate-8.png";
 import realtimecode from "./assets/images/realtimecode.jpg";
-import quickChat from "./assets/images/quickChat.png";
+import quickChat from "./assets/images/quickchat.png";
 import logo from "./assets/images/logo2.png";
-import ATSResume from "./assets/images/ATSResume.jpg";
-import BookMyDoc from "./assets/images/BookMyDoc.jpg";
+import atsResume from "./assets/images/atsresume.jpg";
+import BookMyDoc from "./assets/images/bookmydoc.jpg";
 import DisasterManagement from "./assets/images/disaster.jpg";
-import Nursery from "./assets/images/Nursery.jpg";
-import BloodDonation from "./assets/images/blood-donation.jpg";
+import Nursery from "./assets/images/nursery.jpg";
+import BloodDonation from "./assets/images/blooddonation.jpg";
 // --- SVG Icons ---
 const MailIcon = (props) => (
   <svg
@@ -1194,7 +1194,7 @@ export default function App() {
       title: "ATS Resume Builder",
       description:
         "An AI-powered tool to create and optimize resumes for Applicant Tracking Systems (ATS).",
-      image: ATSResume,
+      image: atsResume,
       tags: [
         "React",
         "Python",
