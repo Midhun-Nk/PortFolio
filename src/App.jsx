@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue } from 'framer-motion';
 // Icons for UI
 import { 
   Github, Linkedin, Instagram, ExternalLink, 
   ArrowUpRight, Globe, Database, Briefcase, 
   Layout, MapPin, ArrowRight, User, Award, Twitter,
-  Smartphone, Video, Monitor, Code2, Terminal, Cpu
+  Smartphone, Video, Monitor, X, Play, Link as LinkIcon, 
+  Terminal, Cpu, Code2
 } from 'lucide-react';
 
 // Icons for Tech Stack
@@ -18,110 +19,124 @@ import {
   SiExpress, SiFastapi, SiSupabase, SiMysql, SiTypescript
 } from 'react-icons/si';
 
-// --- IMAGE IMPORTS ---
-// Replace these paths with the actual names of your files in src/assets
-// If you don't have images yet, comment these out and the placeholders will work.
-// import metaCertImg from './assets/meta_backend.jpg'; 
-// import awsCertImg from './assets/aws_cloud.jpg';
-// import reactCertImg from './assets/react_native.jpg';
-// import bootcampCertImg from './assets/fullstack.jpg';
-import certificate1 from './assets/certificate/certificate-1.png';
-import certificate2 from './assets/certificate/certificate-2.png';
-import certificate3 from './assets/certificate/certificate-3.png';
-import certificate4 from './assets/certificate/certificate-4.png';
-import certificate5 from './assets/certificate/certificate-5.png';
-import certificate6 from './assets/certificate/certificate-6.png';
-import certificate7 from './assets/certificate/certificate-7.png';
-import certificate8 from './assets/certificate/certificate-8.png';
-
+// --- IMAGE IMPORTS (Placeholders) ---
+import djangodrf from './assets/certificate/djangodrf.png';
+import dsa from './assets/certificate/dsa.png';
+import fullstack from './assets/certificate/fullstack.png';
+import hackthon from './assets/certificate/hackthon.png';
+import internship from './assets/certificate/internship.png';
+import python_django from './assets/certificate/python_django.png';
+import responsive from './assets/certificate/responsive.png';
+import sql from './assets/certificate/sql.png';
+// ... import others
 
 // --- DATA: PROJECTS ---
 const PROJECTS = [
   { 
+      id: 1,
       title: "Disaster Response", 
-      desc: "Offline-first coordination app for rescue teams.",
-      stack: ["Flutter", "Firebase", "Maps"],
-      color: "bg-blue-600"
+      desc: "Offline-first coordination app.",
+      longDesc: "A critical tool for emergency responders operating in areas with compromised connectivity. It uses peer-to-peer mesh networking to sync data when back online. Built with a focus on battery optimization and low-latency data transfer.",
+      stack: ["Flutter", "Firebase", "Google Maps API", "Dart"],
+      color: "bg-blue-600",
+      github: "https://github.com",
+      live: "https://demo.com"
   },
   { 
+      id: 2,
       title: "E-Commerce Nursery", 
-      desc: "Full-stack plant marketplace with inventory.",
-      stack: ["MERN", "Redux", "Stripe"],
-      color: "bg-green-600"
+      desc: "Full-stack plant marketplace.",
+      longDesc: "A scalable marketplace for plant nurseries featuring real-time inventory management, Stripe payment gateway integration, and an admin dashboard for analytics. Optimized for SEO and fast load times.",
+      stack: ["MERN Stack", "Redux Toolkit", "Stripe", "AWS S3"],
+      color: "bg-green-600",
+      github: "https://github.com",
+      live: "https://demo.com"
   },
   { 
+      id: 3,
       title: "Collab Code Editor", 
-      desc: "Real-time pair programming environment.",
-      stack: ["React", "Socket.io", "Node"],
-      color: "bg-purple-600"
+      desc: "Real-time pair programming.",
+      longDesc: "A browser-based IDE allowing multiple developers to edit code simultaneously. Features syntax highlighting, chat, and room management using WebSockets for sub-millisecond latency.",
+      stack: ["React", "Socket.io", "Node.js", "Express"],
+      color: "bg-purple-600",
+      github: "https://github.com",
+      live: "https://demo.com"
   },
   { 
+      id: 4,
       title: "ATS Resume Builder", 
-      desc: "AI-driven resume optimization SaaS.",
-      stack: ["Next.js", "Django", "OpenAI"],
-      color: "bg-orange-600"
+      desc: "AI-driven resume optimization.",
+      longDesc: "An AI tool that analyzes job descriptions and tailors resumes automatically. It uses OpenAI's GPT-4 API to generate keyword-optimized content to pass ATS filters with a high success rate.",
+      stack: ["Next.js", "Django", "OpenAI API", "PostgreSQL"],
+      color: "bg-orange-600",
+      github: "https://github.com",
+      live: "https://demo.com"
   },
   { 
+      id: 5,
       title: "Blood Donation Net", 
-      desc: "Donor bridging network with notifications.",
-      stack: ["Django", "React Native"],
-      color: "bg-red-600"
+      desc: "Donor bridging network.",
+      longDesc: "A location-based service connecting blood donors with hospitals in real-time. Features push notifications for urgent requirements, donor history tracking, and privacy-focused profile management.",
+      stack: ["Django", "React Native", "Celery", "Redis"],
+      color: "bg-red-600",
+      github: "https://github.com",
+      live: "https://demo.com"
   }
 ];
 
 // --- DATA: CERTIFICATES ---
 const CERTIFICATES = [
   { 
-    title: "Meta Backend Developer", 
-    issuer: "Coursera", 
-    date: "2024", 
-    image: certificate1 // Variable from import
+    title: "Python & Django Full Stack", 
+    issuer: "Udemy", 
+    date: "2025", 
+    image: python_django 
   },
   { 
-    title: "Supabase Database Specialist", 
+    title: "Data Structures & Algorithms in Python", 
     issuer: "Udemy", 
+    date: "2025",
+    image: dsa 
+  },
+  { 
+    title: "Hackathon Participant", 
+    issuer: "Hack4Good", 
     date: "2024",
-    image: certificate2 
+    image: hackthon 
   },
   { 
-    title: "React Native Specialist", 
-    issuer: "Udemy", 
+    title: "Responsive Web Design", 
+    issuer: "freeCodeCamp", 
+    date: "2024",
+    image: responsive
+  },
+   { 
+    title: "Python Internship", 
+    issuer: "ReverTech IT Solutions", 
     date: "2023",
-    image: certificate3 
-  },
-  { 
-    title: "Full Stack Bootcamp", 
-    issuer: "Udemy", 
-    date: "2022",
-    image: certificate4
+    image: internship
   },
    { 
-    title: "Full Stack Bootcamp", 
-    issuer: "Udemy", 
-    date: "2022",
-    image: certificate5
+    title: "MERN Stack Training", 
+    issuer: "Edunet Foundation", 
+    date: "2025",
+    image: fullstack
   },
    { 
-    title: "Full Stack Bootcamp", 
-    issuer: "Udemy", 
-    date: "2022",
-    image: certificate6
+    title: "introdution to SQL", 
+    issuer: "Skillup", 
+    date: "2024",
+    image: sql
   },
    { 
-    title: "Full Stack Bootcamp", 
+    title: "Python Django Rest Api", 
     issuer: "Udemy", 
-    date: "2022",
-    image: certificate7
-  },
-   { 
-    title: "Full Stack Bootcamp", 
-    issuer: "Udemy", 
-    date: "2022",
-    image: certificate8
+    date: "2025",
+    image: djangodrf
   }
 ];
 
-// --- TECH STACK DATA ---
+// --- TECH STACK ---
 const TECH_CATEGORIES = {
   "Frontend": [
     { name: "React", icon: <FaReact />, color: "#61DAFB" },
@@ -162,11 +177,21 @@ const viewportConfig = { once: false, amount: 0.2 };
 
 const Portfolio = () => {
   const [activeTab, setActiveTab] = useState("Frontend");
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = 'unset';
+    }
+  }, [selectedProject]);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-[#e5e5e5] font-sans selection:bg-blue-600/30 selection:text-blue-200 overflow-x-hidden">
       
-      {/* Background & Header remain same... */}
+      {/* Background & Header */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:32px_32px]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_800px_at_100%_200px,#172554,transparent)] opacity-20"></div>
@@ -180,9 +205,9 @@ const Portfolio = () => {
       >
         <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
           <div className="flex items-center gap-3">
-             <div className="w-8 h-8 bg-blue-600 flex items-center justify-center font-bold text-white text-sm tracking-tighter">DE</div>
+             <div className="w-8 h-8 bg-blue-600 flex items-center justify-center font-bold text-white text-sm tracking-tighter">MN</div>
              <div className="flex flex-col leading-none">
-                <span className="font-bold text-sm text-white">DEV.IO</span>
+                <span className="font-bold text-sm text-white">MIDHUN.NK</span>
                 <span className="text-[10px] text-gray-500 font-mono">KERALA_IN</span>
              </div>
           </div>
@@ -208,11 +233,11 @@ const Portfolio = () => {
           className="min-h-[75vh] flex flex-col justify-center border-b border-white/10"
         >
           <motion.div variants={fadeInUp} className="mb-6 flex items-center gap-2 text-blue-500 font-mono text-xs uppercase tracking-widest border border-blue-500/20 bg-blue-500/5 px-3 py-1 w-fit">
-            Full Stack Engineer • Version 3.0
+            Hello World, I'm
           </motion.div>
           <motion.h1 variants={fadeInUp} className="text-6xl md:text-8xl font-semibold tracking-tight text-white mb-8 leading-[1.05]">
-            Industrial Grade <br/>
-            <span className="text-gray-600">Digital Solutions.</span>
+            Midhun NK <br/>
+            <span className="text-gray-600">Full Stack Engineer.</span>
           </motion.h1>
           <motion.div variants={fadeInUp} className="grid md:grid-cols-12 gap-8 items-start">
              <p className="md:col-span-6 text-xl text-gray-400 leading-relaxed font-light">
@@ -281,7 +306,7 @@ const Portfolio = () => {
             <span className="font-mono text-xs text-gray-500">[ MODULES ]</span>
           </motion.div>
           <div className="md:hidden">
-            <div className="flex overflow-x-auto gap-4 mb-8 pb-2 scrollbar-hide">
+            <div className="flex overflow-x-auto gap-4 mb-8 pb-2 scrollbar-custom">
               {Object.keys(TECH_CATEGORIES).map((cat) => (
                 <button key={cat} onClick={() => setActiveTab(cat)} className={`px-4 py-2 rounded-full text-sm font-mono whitespace-nowrap transition-colors border ${activeTab === cat ? 'bg-white text-black border-white' : 'bg-transparent text-gray-500 border-white/10'}`}>
                   {cat}
@@ -313,19 +338,19 @@ const Portfolio = () => {
         >
           <motion.div variants={fadeInUp} className="flex justify-between items-end mb-12">
             <h2 className="text-3xl font-medium">Featured Deployments</h2>
-            <span className="font-mono text-xs text-gray-500">[ 2023 — 2026 ]</span>
+            {/* <span className="font-mono text-xs text-gray-500">[2023 — 2026]</span> */}
           </motion.div>
           <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS.map((project, idx) => (
-                <ProjectCard key={idx} project={project} />
+                <ProjectCard key={idx} project={project} onClick={() => setSelectedProject(project)} />
             ))}
           </div>
           <div className="md:hidden">
-             <MobileAutoSlider items={PROJECTS} renderItem={(project) => <ProjectCard project={project} />} />
+             <MobileSwipeSlider items={PROJECTS} renderItem={(project) => <ProjectCard project={project} onClick={() => setSelectedProject(project)} />} />
           </div>
         </motion.section>
 
-        {/* --- CERTIFICATES SECTION --- */}
+        {/* Certificates Section */}
         <motion.section 
           id="certificates" 
           initial="hidden" 
@@ -337,15 +362,13 @@ const Portfolio = () => {
             <h2 className="text-3xl font-medium">Certifications</h2>
             <span className="font-mono text-xs text-gray-500">[ CREDENTIALS ]</span>
           </motion.div>
-
           <div className="hidden md:grid md:grid-cols-3 gap-6">
              {CERTIFICATES.map((cert, i) => (
                 <CertificateCard key={i} cert={cert} />
              ))}
           </div>
-
           <div className="md:hidden">
-             <MobileAutoSlider items={CERTIFICATES} renderItem={(cert) => <CertificateCard cert={cert} />} />
+             <MobileSwipeSlider items={CERTIFICATES} renderItem={(cert) => <CertificateCard cert={cert} />} />
           </div>
         </motion.section>
 
@@ -363,9 +386,9 @@ const Portfolio = () => {
           </motion.div>
           <div className="max-w-3xl">
              {[
-                { role: "Freelance Full Stack Developer", time: "Current", company: "Global Remote", desc: "Architecting scalable web & mobile solutions." },
-                { role: "Content Creator", time: "2023 — Present", company: "Community", desc: "Producing technical content for developers." },
-                { role: "Hackathon Winner", time: "2024", company: "TechNova", desc: "Secured 1st place building an AI Disaster Response tool." }
+                { role: "Full Stack Developer", time: "Current", company: "Entrike InfoTech", desc: "Architecting scalable web & mobile solutions." },
+                { role: "Full Stack Trainee", time: "July — October", company: "Edunet foundation", desc: "Undergoing intensive training in full stack development." },
+                { role: "Freelance Developer", time: "2024", company: "", desc: "Building custom web applications for college projects." }
              ].map((job, i) => (
                  <motion.div key={i} variants={fadeInUp} className="relative pl-12 pb-12 last:pb-0 border-l border-white/10">
                     <div className="absolute left-[-5px] top-1 w-[9px] h-[9px] bg-[#0a0a0a] border border-blue-500 rounded-full"></div>
@@ -418,37 +441,207 @@ const Portfolio = () => {
            <div className="mt-2 md:mt-0">DESIGNED IN KERALA, INDIA</div>
         </footer>
       </main>
-      <style>{`.scrollbar-hide::-webkit-scrollbar { display: none; } .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }`}</style>
+
+      {/* --- PREMIUM MODAL --- */}
+      <AnimatePresence>
+        {selectedProject && (
+            <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
+                onClick={() => setSelectedProject(null)}
+            >
+                <motion.div 
+                    initial={{ y: 50, opacity: 0, scale: 0.95 }}
+                    animate={{ y: 0, opacity: 1, scale: 1 }}
+                    exit={{ y: 50, opacity: 0, scale: 0.95 }}
+                    onClick={(e) => e.stopPropagation()} 
+                    className="bg-[#0f0f0f] border border-white/10 w-full max-w-4xl max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl relative scrollbar-custom"
+                >
+                    {/* Sticky Header */}
+                    <div className="sticky top-0 z-20 bg-[#0f0f0f]/90 backdrop-blur-md p-6 border-b border-white/5 flex justify-between items-center">
+                        <h2 className="text-2xl font-bold text-white tracking-tight">{selectedProject.title}</h2>
+                        <button 
+                            onClick={() => setSelectedProject(null)}
+                            className="p-2 bg-white/5 rounded-full text-gray-400 hover:bg-white hover:text-black transition-all"
+                        >
+                            <X size={20}/>
+                        </button>
+                    </div>
+
+                    <div className="p-6 md:p-8">
+                        {/* Video / Image Area */}
+                        <div className="w-full aspect-video bg-[#1a1a1a] rounded-xl border border-white/5 flex items-center justify-center relative overflow-hidden group mb-8">
+                            <div className={`absolute inset-0 opacity-10 ${selectedProject.color}`}></div>
+                            {/* Grid Pattern in Background */}
+                            <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+                            
+                            <div className="flex flex-col items-center gap-4 z-10">
+                                <div className="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center backdrop-blur-md group-hover:scale-110 transition-transform duration-300 cursor-pointer">
+                                    <Play fill="white" className="ml-1 w-8 h-8 text-white"/>
+                                </div>
+                                <span className="text-xs font-mono text-gray-500 tracking-widest">WATCH DEMO</span>
+                            </div>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-8">
+                            {/* Main Content */}
+                            <div className="md:col-span-2 space-y-8">
+                                <div>
+                                    <h3 className="text-sm font-mono text-blue-500 uppercase mb-3 tracking-wider flex items-center gap-2">
+                                        <Terminal size={14}/> Project Overview
+                                    </h3>
+                                    <p className="text-gray-300 leading-relaxed text-lg">
+                                        {selectedProject.longDesc || selectedProject.desc}
+                                    </p>
+                                </div>
+
+                                <div>
+                                    <h3 className="text-sm font-mono text-blue-500 uppercase mb-3 tracking-wider flex items-center gap-2">
+                                        <Cpu size={14}/> Key Features
+                                    </h3>
+                                    <ul className="space-y-3">
+                                        {[
+                                            "Real-time data synchronization with sub-second latency.",
+                                            "Responsive UI optimized for mobile and desktop viewports.",
+                                            "Secure authentication flow with JWT and encrypted storage.",
+                                            "Scalable backend architecture capable of high concurrency."
+                                        ].map((feat, i) => (
+                                            <li key={i} className="flex items-start gap-3 text-gray-400 text-sm">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-white/20 mt-2"></div>
+                                                {feat}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {/* Sidebar Info */}
+                            <div className="space-y-8">
+                                <div>
+                                    <h3 className="text-sm font-mono text-gray-500 uppercase mb-3 tracking-wider">Tech Stack</h3>
+                                    <div className="flex flex-wrap gap-2">
+                                        {selectedProject.stack.map(tech => (
+                                            <span key={tech} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-300">
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h3 className="text-sm font-mono text-gray-500 uppercase mb-3 tracking-wider">Links</h3>
+                                    <div className="flex flex-col gap-3">
+                                        <a href={selectedProject.live} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-3 bg-white text-black font-bold rounded-lg hover:bg-gray-200 transition-colors">
+                                            <ExternalLink size={18}/> Live Demo
+                                        </a>
+                                        <a href={selectedProject.github} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 w-full py-3 bg-white/5 border border-white/10 text-white font-medium rounded-lg hover:bg-white/10 transition-colors">
+                                            <Github size={18}/> View Code
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </motion.div>
+            </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* --- CUSTOM CSS FOR SCROLLBAR --- */}
+      <style>{`
+        /* Hide scrollbar for Horizontal lists */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Custom Cool Scrollbar for Body and Modal */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2563eb; /* Blue highlight on hover */
+        }
+        /* Specific class for modal internal scrolling */
+        .scrollbar-custom::-webkit-scrollbar-track {
+            background: #0f0f0f;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+      `}</style>
     </div>
   );
 };
 
-// --- COMPONENT: MOBILE SLIDER ---
-const MobileAutoSlider = ({ items, renderItem }) => {
+// --- COMPONENT: MOBILE SWIPE SLIDER ---
+const MobileSwipeSlider = ({ items, renderItem }) => {
     const [index, setIndex] = useState(0);
+    const x = useMotionValue(0);
+    const [isPaused, setIsPaused] = useState(false);
+
     useEffect(() => {
-        const interval = setInterval(() => { setIndex((prev) => (prev + 1) % items.length); }, 3000);
+        if(isPaused) return;
+        const interval = setInterval(() => {
+            setIndex((prev) => (prev + 1) % items.length);
+        }, 3000); 
         return () => clearInterval(interval);
-    }, [items.length]);
+    }, [index, isPaused, items.length]);
+
+    const handleDragEnd = (e, { offset }) => {
+        setIsPaused(false);
+        const swipe = offset.x;
+        if (swipe < -50) {
+            setIndex((prev) => (prev + 1) % items.length);
+        } else if (swipe > 50) {
+            setIndex((prev) => (prev - 1 + items.length) % items.length);
+        }
+    };
+
     return (
         <div className="relative w-full">
             <div className="overflow-hidden">
-                <motion.div className="flex" animate={{ x: `-${index * 100}%` }} transition={{ type: "spring", stiffness: 300, damping: 30 }}>
+                <motion.div 
+                    className="flex"
+                    animate={{ x: `-${index * 100}%` }}
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
+                    onDragStart={() => setIsPaused(true)}
+                    onDragEnd={handleDragEnd}
+                    style={{ x }}
+                >
                     {items.map((item, idx) => (
-                        <div key={idx} className="min-w-full px-1">{renderItem(item)}</div>
+                        <div key={idx} className="min-w-full px-1">
+                            {renderItem(item)}
+                        </div>
                     ))}
                 </motion.div>
             </div>
+            
+            {/* Dots */}
             <div className="flex justify-center gap-2 mt-4">
                 {items.map((_, idx) => (
-                    <button key={idx} onClick={() => setIndex(idx)} className={`w-2 h-2 rounded-full transition-colors ${idx === index ? 'bg-blue-500' : 'bg-gray-700'}`} />
+                    <button 
+                        key={idx} 
+                        onClick={() => setIndex(idx)}
+                        className={`w-2 h-2 rounded-full transition-colors ${idx === index ? 'bg-blue-500' : 'bg-gray-700'}`}
+                    />
                 ))}
             </div>
         </div>
     );
 };
 
-// --- COMPONENT: CERTIFICATE CARD (UPDATED TO RENDER IMAGE) ---
+// --- COMPONENT: CERTIFICATE CARD ---
 const CertificateCard = ({ cert }) => (
     <div className="bg-[#0f0f0f] border border-white/10 p-4 hover:border-blue-500/30 transition-colors group cursor-pointer h-full">
         <div className="aspect-video bg-[#1a1a1a] mb-4 border border-white/5 flex items-center justify-center relative overflow-hidden">
@@ -470,8 +663,8 @@ const CertificateCard = ({ cert }) => (
 );
 
 // --- COMPONENT: PROJECT CARD ---
-const ProjectCard = ({ project }) => (
-    <div className="group border border-white/10 bg-[#0f0f0f] hover:border-white/30 transition-all h-full">
+const ProjectCard = ({ project, onClick }) => (
+    <div onClick={onClick} className="group border border-white/10 bg-[#0f0f0f] hover:border-white/30 transition-all h-full cursor-pointer">
         <div className="h-48 w-full bg-[#151515] relative overflow-hidden border-b border-white/10 group-hover:opacity-90 transition-opacity">
             <div className={`absolute inset-0 opacity-20 ${project.color}`}></div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-20 border border-white/10 rounded bg-[#0a0a0a] flex flex-col p-2 gap-2 shadow-xl group-hover:scale-105 transition-transform duration-500">
